@@ -78,6 +78,8 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
 @property (nonatomic, assign) BOOL                    cellPlayerOnCenter;
 /** player在栈上，即此时push或者模态了新控制器 */
 @property (nonatomic, assign) BOOL                    playerPushedOrPresented;
+/** 是否添加手势(显示GIF时候就不需要手势) */
+@property (nonatomic, assign) BOOL isCreateGesture;
 
 /**
  *  单例，用于列表cell上多个视频

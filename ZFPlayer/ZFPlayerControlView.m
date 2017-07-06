@@ -54,7 +54,7 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
 /** 系统菊花 */
 @property (nonatomic, strong) MMMaterialDesignSpinner *activity;
 /** 返回按钮*/
-@property (nonatomic, strong) UIButton                *backBtn;
+//@property (nonatomic, strong) UIButton                *backBtn;
 /** 关闭按钮*/
 @property (nonatomic, strong) UIButton                *closeBtn;
 /** 重播按钮 */
@@ -110,7 +110,8 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
 - (instancetype)init {
     self = [super init];
     if (self) {
-
+        self.isShowBackBtn = YES;
+        
         [self addSubview:self.placeholderImageView];
         [self addSubview:self.topImageView];
         [self addSubview:self.bottomImageView];
@@ -501,6 +502,7 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
     self.fullScreen             = YES;
     self.lockBtn.hidden         = !self.isFullScreen;
     self.fullScreenBtn.selected = self.isFullScreen;
+    self.backBtn.hidden         = NO;
     [self.backBtn setImage:ZFPlayerImage(@"ZFPlayer_back_full") forState:UIControlStateNormal];
     [self.backBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.topImageView.mas_top).offset(23);
@@ -515,6 +517,7 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
     self.fullScreen             = NO;
     self.lockBtn.hidden         = !self.isFullScreen;
     self.fullScreenBtn.selected = self.isFullScreen;
+    self.backBtn.hidden         = !self.isShowBackBtn;
     [self.backBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.topImageView.mas_top).offset(3);
         make.leading.equalTo(self.topImageView.mas_leading).offset(10);
@@ -598,6 +601,10 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
 - (void)setFullScreen:(BOOL)fullScreen {
     _fullScreen = fullScreen;
     ZFPlayerShared.isLandscape = fullScreen;
+}
+
+- (void)setFailTitle:(NSString *)failTitle {
+    [self.failBtn setTitle:failTitle forState:UIControlStateNormal];
 }
 
 #pragma mark - getter
@@ -794,7 +801,7 @@ static const CGFloat ZFPlayerControlBarAutoFadeOutTimeInterval = 0.35f;
 - (UIButton *)failBtn {
     if (!_failBtn) {
         _failBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-        [_failBtn setTitle:@"加载失败,点击重试" forState:UIControlStateNormal];
+        [_failBtn setTitle:@"" forState:UIControlStateNormal];
         [_failBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _failBtn.titleLabel.font = [UIFont systemFontOfSize:14.0];
         _failBtn.backgroundColor = RGBA(0, 0, 0, 0.7);

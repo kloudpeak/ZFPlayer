@@ -32,6 +32,8 @@
 @property (nonatomic, assign) BOOL     isStatusBarHidden;
 /** 是否是横屏状态 */
 @property (nonatomic, assign) BOOL     isLandscape;
+/** 亮度文字*/
+@property (nonatomic, strong) NSString *brightnessTitle;
 + (instancetype)sharedBrightnessView;
 
 @end

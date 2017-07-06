@@ -144,6 +144,7 @@ typedef NS_ENUM(NSInteger, PanDirection){
  */
 - (void)initializeThePlayer {
     self.cellPlayerOnCenter = YES;
+    self.isCreateGesture = YES;
 }
 
 - (void)dealloc {
@@ -431,6 +432,9 @@ typedef NS_ENUM(NSInteger, PanDirection){
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    if (!self.isCreateGesture) {
+        return;
+    }
     if (self.isAutoPlay) {
         UITouch *touch = [touches anyObject];
         if(touch.tapCount == 1) {
@@ -1211,7 +1215,9 @@ typedef NS_ENUM(NSInteger, PanDirection){
 #pragma mark - UIGestureRecognizerDelegate
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
-    
+    if (!self.isCreateGesture) {
+        return NO;
+    }
     if (gestureRecognizer == self.shrinkPanGesture && self.isCellVideo) {
         if (!self.isBottomVideo || self.isFullScreen) {
             return NO;
@@ -1254,7 +1260,9 @@ typedef NS_ENUM(NSInteger, PanDirection){
     self.isPauseByUser = YES;
     
     // 添加手势
-    [self createGesture];
+    if (self.isCreateGesture) {
+        [self createGesture];
+    }
     
 }
 

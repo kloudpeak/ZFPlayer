@@ -27,4 +27,11 @@
 
 @interface ZFPlayerControlView : UIView 
 
+/** 返回按钮*/
+@property (nonatomic, strong) UIButton                *backBtn;
+/** 加载失败文字*/
+@property (nonatomic, strong) NSString                *failTitle;
+/** 在竖屏状态下,是否显示返回按钮 */
+@property (nonatomic, assign) BOOL                    isShowBackBtn;
+
 @end
