@@ -81,6 +81,8 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
 /** 是否添加手势(显示GIF时候就不需要手势) */
 @property (nonatomic, assign) BOOL isCreateGesture;
 
+@property (nonatomic, strong) UIView                 *controlView;
+
 /**
  *  单例，用于列表cell上多个视频
  *
