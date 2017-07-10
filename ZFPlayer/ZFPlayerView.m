@@ -144,6 +144,7 @@ typedef NS_ENUM(NSInteger, PanDirection){
 - (void)initializeThePlayer {
     self.cellPlayerOnCenter = YES;
     self.isCreateGesture = YES;
+    self.isReportPlay = NO;
 }
 
 - (void)dealloc {
@@ -1026,6 +1027,9 @@ typedef NS_ENUM(NSInteger, PanDirection){
             self.playDidEnd = YES;
             [self.controlView zf_playerPlayEnd];
         }
+    }
+    if (self.isReportPlay) {
+        [self zf_controlView:nil repeatPlayAction:nil];
     }
 }
 

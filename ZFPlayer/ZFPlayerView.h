@@ -80,6 +80,8 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
 @property (nonatomic, assign) BOOL                    playerPushedOrPresented;
 /** 是否添加手势(显示GIF时候就不需要手势) */
 @property (nonatomic, assign) BOOL isCreateGesture;
+/** 是否需要循环播放(默认不需要) */
+@property (nonatomic, assign) BOOL isReportPlay;
 
 @property (nonatomic, strong) UIView                 *controlView;
 
