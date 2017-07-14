@@ -305,6 +305,9 @@ typedef NS_ENUM(NSInteger, PanDirection){
         self.scrollView     = nil;
         self.indexPath     = nil;
     }
+    [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationPortrait animated:NO];
+    self.isFullScreen = NO;
+    self.transform = CGAffineTransformIdentity;
 }
 
 /**
